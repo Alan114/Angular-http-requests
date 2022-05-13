@@ -30,11 +30,8 @@ export class AppComponent implements OnInit, OnDestroy {
         this.loadedPosts = posts;
       },
       (error) => {
-        if (error.status === 401) {
-          this.error = error.message;
-        } else {
-          this.error = "Unknown error";
-        }
+        this.isFetching = false;
+        this.error = error.message;
       }
     );
   }
@@ -53,11 +50,9 @@ export class AppComponent implements OnInit, OnDestroy {
         this.loadedPosts = posts;
       },
       (error) => {
-        if (error.status === 401) {
-          this.error = error.message;
-        } else {
-          this.error = "Unknown error";
-        }
+        this.isFetching = false;
+        this.error = error.message;
+        console.log(error);
       }
     );
   }
@@ -67,6 +62,10 @@ export class AppComponent implements OnInit, OnDestroy {
     this.postsService.deletePosts().subscribe(() => {
       this.loadedPosts = [];
     });
+  }
+
+  onHandleError() {
+    this.error = null;
   }
 
   ngOnDestroy(): void {
