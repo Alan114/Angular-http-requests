@@ -44,6 +44,7 @@ export class PostsService {
         {
           headers: new HttpHeaders({ "Custom-Header": "Hello" }),
           params: searchParams,
+          responseType: "json",
         }
       )
       .pipe(
@@ -69,6 +70,7 @@ export class PostsService {
         "https://angular-http-requests-4dc8c-default-rtdb.europe-west1.firebasedatabase.app/posts.json",
         {
           observe: "events",
+          responseType: "text",
         }
       )
       .pipe(
